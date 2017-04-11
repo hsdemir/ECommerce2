@@ -1,0 +1,120 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Category CRUD İşlemleri</title>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css' />
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/main.css" rel="stylesheet" />
+
+    <script src="js/angular.min.js"></script>
+    <script src="js/product.js"></script>
+
+</head>
+<body ng-app="products">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <br />
+                <br />
+                <h1>Ecommerce 2 Demo</h1>
+                <p>Kategori ve ürün CRUD işlemleri yapılmaktadır.</p>
+                <br />
+
+                <div class="panel panel-default panel-table">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col col-xs-6">
+                                <h3 class="panel-title">Ürün İşlemleri</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table table-striped table-bordered table-list">
+                            <thead>
+                                <tr>
+                                    <th><em class="fa fa-cog"></em></th>
+                                    <th class="hidden-xs">ID</th>
+                                    <th>Ürün Adı</th>
+                                    <th>Ürün Kategori</th>
+                                    <th>Stok Adedi</th>
+                                    <th>Fiyat</th>
+                                    <th>Kdv</th>
+                                </tr>
+                            </thead>
+                            <tbody ng-controller="productListController">
+                                <tr ng-repeat="p in products">
+                                    <td align="center">
+                                        <a class="btn btn-default" href="javascript:;" ng-click="edit(p.Id)"><em class="fa fa-pencil"></em></a>
+                                        <a class="btn btn-danger" href="javascript:;" ng-click="delete(p.Id)"><em class="fa fa-trash"></em></a>
+                                    </td>
+                                    <td class="hidden-xs td-id">{{p.Id}}</td>
+                                    <td>{{p.Name}}</td>
+                                    <td>{{p.Category.Name}}</td>
+                                    <td>{{p.UnitInStock}}</td>
+                                    <td>{{p.Price}}</td>
+                                    <td>{{p.Vat}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <br />
+
+                <div class="new">
+                    <form ng-submit="submit()" ng-controller="productAddController">
+                        <div class="panel panel-default panel-table">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col col-xs-6">
+                                        <h3 class="panel-title">Ürün Ekle</h3>
+                                    </div>
+                                    <div class="col col-xs-6 text-right">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel-body">
+                                <table class="table table-striped table-bordered table-list">
+                                    <tr>
+                                        <td><b>Ürün Adı</b></td>
+                                        <td>
+                                            <input id="txtName" type="text" ng-model="Name" required /></td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Kategori</b></td>
+                                        <td>
+                                            <select>
+                                                <option ng-repeat="c in categories" value="{{c.Id}}">{{c.Name}}</option>
+                                            </select></td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Stok Adedi</b></td>
+                                        <td>
+                                            <input id="Stock" type="number" ng-model="UnitinStock" required /></td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Fiyat</b></td>
+                                        <td>
+                                            <input id="Price" type="number" ng-model="Price" required /></td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Vat</b></td>
+                                        <td>
+                                            <input id="Vat" type="number" ng-model="Vat" required /></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">
+                                            <input type="submit" id="btnNewProduct" class="btn btn-sm btn-primary btn-create" value="Yeni Ürün" /></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
